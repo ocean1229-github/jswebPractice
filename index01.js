@@ -5,8 +5,22 @@ const port = 3000
 const goodsRouter = require('./routes/goods');
 const userRouter = require('./routes/user');
 
+app.use(express.urlencoded({extend: false}))
+app.use(express.json())
+app.use(express.static('public'))
+
 app.use('/goods', goodsRouter);
 app.use('/user', userRouter);
+
+app.use((req, res, next) => {
+    console.log(req);
+    next();
+  });
+  
+  app.get('/', (req, res, next) => {
+    res.send('Welcome Home');
+  });
+
 
 // app.get('/goods/list', (req, res) => {
 //     res.send('상품 목록 페이지')
