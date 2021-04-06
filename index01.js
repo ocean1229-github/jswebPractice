@@ -2,14 +2,31 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.get('/hi', (req, res) => {
-    res.send('Hi. This is express router')
-  })
+const goodsRouter = require('./routes/goods');
+const userRouter = require('./routes/user');
+
+app.use('/goods', goodsRouter);
+app.use('/user', userRouter);
+
+// app.get('/goods/list', (req, res) => {
+//     res.send('상품 목록 페이지')
+//   })
   
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+//   app.get('/goods/detail', (req, res) => {
+//     res.send('상품 상세 페이지')
+//   })
+  
+//   app.get('/user/login', (req, res) => {
+//     res.send('로그인 페이지')
+//   })
+  
+//   app.get('/user/register', (req, res) => {
+//     res.send('회원가입 페이지')
+//   })
 
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`)
 })
+
+// npm init -y
+// npm install express 
