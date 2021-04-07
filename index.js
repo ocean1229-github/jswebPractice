@@ -16,7 +16,19 @@ app.use((req, res, next) => {
     console.log(req);
     next();
   });
+
+  app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+app.get('/test', (req, res) => {
+  let name = req.query.name;
+  res.render('test', {name});
+})
   
+app.get('/home', (req, res) => {
+  res.render('index');
+}) 
+
   app.get('/', (req, res) => {
     res.send('<!DOCTYPE html>\
     <html lang="en">\
@@ -42,3 +54,4 @@ app.listen(port, () => {
 
 // npm init -y
 // npm install express 
+// npm install ejs
