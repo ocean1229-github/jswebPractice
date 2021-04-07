@@ -29,6 +29,11 @@ app.get('/home', (req, res) => {
   res.render('index');
 }) 
 
+app.get('/detail', (req, res) => {
+  let goods = req.query.goods;
+  res.render('detail', {goods});
+})
+
   app.get('/', (req, res) => {
     res.send('<!DOCTYPE html>\
     <html lang="en">\
