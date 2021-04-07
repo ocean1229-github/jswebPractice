@@ -30,8 +30,9 @@ app.get('/home', (req, res) => {
 }) 
 
 app.get('/detail', (req, res) => {
-  let goods = req.query.goods;
-  res.render('detail', {goods});
+  // 서버명
+  res.render('detail');
+  // 파일명
 })
 
   app.get('/', (req, res) => {
