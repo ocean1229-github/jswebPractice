@@ -10,3 +10,5 @@ router.get('/detail', function(req, res, next) {
 });
   
 module.exports = router;
+
+// req는 응답요청 res는 응답을 의미
