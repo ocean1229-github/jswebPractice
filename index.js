@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+const connect = require('./schemas'); //schemas에있는 걸 들고오겠다
+connect();
+
 const goodsRouter = require('./routes/goods');
 const userRouter = require('./routes/user');
 
@@ -72,6 +75,53 @@ app.get('/detail', (req, res) => {
 
 // 템플릿 엔진 로그인 후 마이페이지 등 거의 비슷한데 조금씩만 바뀌는 경우
 // 템플릿 엔진을 쓰면 용이하다
+
+const mongoose = require('mongoose'); //설치한 패키지 monogoose를 가져온다
+
+// app.get('/mongodb', async (req, res) => {
+//     await mongoose.connect('mongodb://localhost/voyage', {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//         useFindAndModify: true,
+//         useCreateIndex: true
+//     });
+
+//     const { Schema } = mongoose;
+//     const goodsSchema = new Schema({
+//       goodsID: {
+//         type: Number,
+//         required: true,
+//         unique: true,
+
+//       },
+//       name: { 
+//         type: String,
+//         required: true,
+//         unique: true
+//       },
+//       thumbnailUrl: {
+//         type: String
+//       },
+//       category: {
+//         type: String
+//       },
+//       price: {
+//         type: Number
+//       }
+//     })
+
+//     let Goods = mongoose.model("Goods", goodsSchema);
+
+//     await Goods.create({
+//       goodsId: 1,
+//       name: "아이유랑 1분 통화",
+//       thumbnailUrl: "https://www.google.com/imgres?imgurl=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F9978AC465B029E3032&imgrefurl=https%3A%2F%2Fcashflow99.tistory.com%2F196&tbnid=ofaMffJG1fILPM&vet=10CGkQMyjiAmoXChMI0Ifq8Nj97wIVAAAAAB0AAAAAEAQ..i&docid=hU_j7ywUr0rk_M&w=589&h=585&q=%EC%95%84%EC%9D%B4%EC%9C%A0&ved=0CGkQMyjiAmoXChMI0Ifq8Nj97wIVAAAAAB0AAAAAEAQ",
+//       category: "call",
+//       price: 10000000
+//     })
+
+// 		res.send('ok');
+// })
 
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`)
