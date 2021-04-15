@@ -78,7 +78,9 @@ app.get('/detail', (req, res) => {
 
 const mongoose = require('mongoose'); //설치한 패키지 monogoose를 가져온다
 
-// app.get('/mongodb', async (req, res) => {
+// 위에서 패키지로 대신했기 때문에 밑에 코드가 필요없음
+// 내생각에 코드를 분할하는 css에서 screen component나누는거 그런거 같음
+// app.get('/mongodb', async (req, res) => {  
 //     await mongoose.connect('mongodb://localhost/voyage', {
 //         useNewUrlParser: true,
 //         useUnifiedTopology: true,
