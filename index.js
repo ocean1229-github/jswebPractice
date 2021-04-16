@@ -5,15 +5,19 @@ const port = 3000
 const connect = require('./schemas'); //schemas에있는 걸 들고오겠다
 connect();
 
-const goodsRouter = require('./routes/goods');
-const userRouter = require('./routes/user');
+// const goodsRouter = require('./routes/goods');
+
+// const userRouter = require('./routes/user');
+
+const goodsRouter = require("./routers/goods");
+app.use("/api", [goodsRouter]);
 
 app.use(express.urlencoded({extend: false}))
 app.use(express.json())
 app.use(express.static('public'))
 
-app.use('/goods', goodsRouter);
-app.use('/user', userRouter);
+// app.use('/goods', goodsRouter);
+// app.use('/user', userRouter);
 
 app.use((req, res, next) => {
     console.log(req);
