@@ -24,7 +24,7 @@ router.get("/goods/:goodsId", async (req, res) => {
 router.post('/goods', async (req, res) => {
   // post 받아오는 것들 ( 상품, 이름, url, 카테고리, 가격)
   const { goodsId, name, thumbnailUrl, category, price } = req.body;
-  
+  console.log('req.body', req.body)
   isExist = await Goods.find({ goodsId });
   if (isExist.length == 0) {
     await Goods.create({ goodsId, name, thumbnailUrl, category, price });
