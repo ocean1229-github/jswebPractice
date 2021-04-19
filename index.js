@@ -18,10 +18,10 @@ app.use("/api", [goodsRouter]);
 // app.use('/goods', goodsRouter);
 // app.use('/user', userRouter);
 
-app.use((req, res, next) => {
-    console.log(req);
-    next();
-  });
+// app.use((req, res, next) => {
+//     console.log(req);
+//     next();
+//   });
 
   app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
