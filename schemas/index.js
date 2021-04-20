@@ -16,3 +16,4 @@ mongoose.connection.on("error", err => {
 });
 
 module.exports = connect;
+//잘못하지 않으면 쓰이지 않는 스키마 index.js이다
