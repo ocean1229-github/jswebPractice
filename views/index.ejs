@@ -45,6 +45,7 @@
 
         function get_goods(category) {
             $("#goodsList").empty()
+            <!-- 위에 코드가 없으면 작동하지 않음 -->
             console.log(category)
             $.ajax({
                 type: "GET",
