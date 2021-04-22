@@ -1,5 +1,6 @@
 const express = require("express");
 const Goods = require("../schemas/Goods");
+const Cart = require("../schemas/cart");
 
 const router = express.Router();
 
@@ -28,6 +29,20 @@ router.post('/goods', async (req, res) => {
   isExist = await Goods.find({ goodsId });
   if (isExist.length == 0) {
     await Goods.create({ goodsId, name, thumbnailUrl, category, price });
+  }
+  res.send({ result: "success" });
+});
+
+router.post("/goods/:goodsId/cart", async (req, res) => {
+  const { goodsId } = req.params;
+  const { quantity } = req.body;
+
+  isCart = await Cart.find({ goodsId });
+  console.log(isCart, quantity);
+  if (isCart.length) {
+    await Cart.updateOne({ goodsId }, { $set: { quantity } });
+  } else {
+    await Cart.create({ goodsId: goodsId, quantity: quantity });
   }
   res.send({ result: "success" });
 });
