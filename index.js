@@ -60,6 +60,10 @@ app.get('/detail', (req, res) => {
 
 })
 
+app.get('/cart', (req, res) => {
+  res.render('cart')
+})
+
   app.get('/', (req, res) => {
     res.send('<!DOCTYPE html>\
     <html lang="en">\
