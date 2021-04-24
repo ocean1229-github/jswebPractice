@@ -80,9 +80,9 @@ app.get('/cart', (req, res) => {
     </html>')
   })
 
-  // app.get('/order', (req, res) => {
-  //   res.render('order')
-  // }
+app.get('/order', (req, res) => {
+  res.render('order');
+})
 // 템플릿 엔진 로그인 후 마이페이지 등 거의 비슷한데 조금씩만 바뀌는 경우
 // 템플릿 엔진을 쓰면 용이하다
 
