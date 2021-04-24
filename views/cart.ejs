@@ -66,7 +66,7 @@
           success: function(response) {
             let goods = response["cart"];
             for (let i = 0; i < goods.length; i++) {
-              make_card(goods[i]["goods"]);
+              make_card(goods[i]["goods"], goods[i]["quantity"]);
             }
             getSum();
           }
@@ -93,7 +93,7 @@
         });
       }
 
-      function make_card(item) {
+      function make_card(item, quantity) {
         let htmlTemp = `<div class="card mb-2">
                                     <div class="row no-gutters">
                                         <div class="col-4" style="background: #868e96;" onclick="location.href='/detail?goodsId=${
@@ -120,11 +120,16 @@
                                                         })">삭제</button>
                                                     </div>
                                                     <select class="custom-select col-5" id="numberSelect-${
-                                                      item["goodsId"]
+                                                        item.goodsId
                                                     }">
-                                                        <option selected value=1>1</option>
-                                                        <option value=2>2</option>
-                                                        <option value=3>3</option>
+                                                        ${[1, 2, 3, 4, 5]
+                                                        .map(
+                                                            (i) =>
+                                                            `<option ${
+                                                                i === quantity ? "selected" : ""
+                                                            } value="${i}">${i}</option>`
+                                                        )
+                                                        .join(" ")}
                                                     </select>
                                                 </div>
 
