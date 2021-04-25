@@ -1,3 +1,4 @@
+// ROUTERS는 새로운 페이지를 할떄 그 페이지를 연결시켜주는 중요한 역할
 const express = require("express");
 const Goods = require("../schemas/Goods");
 const Cart = require("../schemas/cart");
