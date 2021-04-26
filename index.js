@@ -142,3 +142,5 @@ app.listen(port, () => {
 // npm init -y
 // npm install express 
 // npm install ejs
+
+// 내 도메인 주소 doodoosplace.shop 
