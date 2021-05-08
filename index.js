@@ -142,6 +142,7 @@ app.listen(port, () => {
 // npm init -y
 // npm install express 
 // npm install ejs
+// npm install mongoose
 // npm install axios cheerio iconv-lite -s
 
 // 내 도메인 주소 doodoosplace.shop  `

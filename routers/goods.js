@@ -1,9 +1,61 @@
 // ROUTERS는 새로운 페이지를 할떄 그 페이지를 연결시켜주는 중요한 역할
 const express = require("express");
 const Goods = require("../schemas/Goods");
-const Cart = require("../schemas/cart");
+const Cart = require("../schemas/Cart");
+
+const cheerio = require("cheerio");
+const axios = require("axios");
+const iconv = require("iconv-lite");
+const url =
+  "http://www.yes24.com/24/Category/BestSeller";
 
 const router = express.Router();
+
+router.get("/goods/add/crawling", async (req, res) => {
+  try {
+    //크롤링 대상 웹사이트 HTML 가져오기
+    await axios({
+      url: url,
+      method: "GET",
+      responseType: "arraybuffer",
+    }).then(async (html) => {
+        //크롤링 코드
+      const content = iconv.decode(html.data, "EUC-KR").toString();
+      const $ = cheerio.load(content);
+      const list = $("ol li");
+
+      await list.each( async (i, tag) => {
+        let desc = $(tag).find("p.copy a").text() 
+        // p.copy a -> 여기서 띄워쓰기는 자식클래스를의미
+        let image = $(tag).find("p.image a img").attr("src")
+        let title = $(tag).find("p.image a img").attr("alt")
+        let price = $(tag).find("p.price strong").text()
+      
+        if(desc && image && title && price){
+          price = price.slice(0,-1).replace(/(,)/g, "")
+          // ↑ 뒤에서 -1번째 자리 삭제 (1000원 (원))
+          // replace는 ~을 치환한다 ↑ , 를 공백으로 처리(없앤다)  
+          let date = new Date()
+          let goodsId = date.getTime()
+          await Goods.create({
+            goodsId:goodsId,
+            name:title,
+            thumbnailUrl:image,
+            category:"도서",
+            price:price
+          })
+        }
+  
+      });
+    })
+    res.send({ result: "success", message: "크롤링이 완료 되었습니다." });
+
+  } catch (error) {
+    //실패 할 경우 코드
+    res.send({ result: "fail", message: "크롤링에 문제가 발생했습니다", error:error });
+  }
+});
+
 
 router.get("/goods", async (req, res, next) => {
   try {
