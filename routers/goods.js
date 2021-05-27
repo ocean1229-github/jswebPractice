@@ -14,6 +14,7 @@ const router = express.Router();
 router.get("/goods/add/crawling", async (req, res) => {
   try {
     //크롤링 대상 웹사이트 HTML 가져오기
+    // api 따오기
     await axios({
       url: url,
       method: "GET",
